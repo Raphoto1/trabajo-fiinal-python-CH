@@ -3,24 +3,33 @@
 
 {% block content %}
 <section>
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Últimas Publicaciones</h2>
-            <ul class="space-y-6">
-                <li class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                    <a href="" class="text-xl font-bold text-blue-700 hover:underline">Cómo aprender Python desde cero</a>
-                    <span class="block text-sm text-gray-500 mt-1">07/07/2025</span>
-                    <p class="mt-2 text-gray-700">Descubre los mejores recursos y consejos para comenzar tu camino en la programación con Python.</p>
-                </li>
-                <li class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                    <a href="" class="text-xl font-bold text-blue-700 hover:underline">Tips para mejorar tu productividad</a>
-                    <span class="block text-sm text-gray-500 mt-1">05/07/2025</span>
-                    <p class="mt-2 text-gray-700">Herramientas y hábitos que te ayudarán a organizar mejor tu tiempo y proyectos.</p>
-                </li>
-                <li class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                    <a href="" class="text-xl font-bold text-blue-700 hover:underline">¿Qué es Django y por qué usarlo?</a>
-                    <span class="block text-sm text-gray-500 mt-1">01/07/2025</span>
-                    <p class="mt-2 text-gray-700">Una introducción sencilla al framework web de Python más popular.</p>
-                </li>
-            </ul>
-        </section>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Últimos Blogs</h2>
+    <ul class="space-y-6">
+        {% for blog in blogs %} 
+            <li class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                <a href="" class="text-xl font-bold text-blue-700 hover:underline">{{ blog.title }}</a>
+                <span class="block text-sm text-gray-500 mt-1">{{ blog.creation_date|date:"d/m/Y" }}</span>
+                <p class="mt-2 text-gray-700">{{ blog.content }}</p>
+            </li>
+        {% empty %}
+            <li class="text-gray-500">No hay publicaciones aún.</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Últimas Publicaciones</h2>
+    <ul class="space-y-6">
+        {% for post in posts %} 
+            <li class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                <a href="" class="text-xl font-bold text-blue-700 hover:underline">{{ post.title }}</a>
+                <span class="block text-sm text-gray-500 mt-1">{{ post.creation_date|date:"d/m/Y" }}</span>
+                <p class="mt-2 text-gray-700">{{ post.content }}</p>
+                <p class="mt-2 text-gray-900 strong">del blog {{ post.blog.title }}</p>
+            </li>
+        {% empty %}
+            <li class="text-gray-500">No hay publicaciones aún.</li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}
 
