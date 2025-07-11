@@ -32,9 +32,9 @@ def all_posts(request):
 
 def all_comments(request):
     if request.method == 'GET':
-        content = request.GET.get('content', '')
-        if content:
-            comments = Comment.objects.filter(content__icontains=content)
+        title = request.GET.get('title', '')
+        if title:
+            comments = Comment.objects.filter(content__icontains=title)
             return render(request, 'blog_manager/all_comments.html', {'comments': comments})
     comments = Comment.objects.all()
     return render(request, 'blog_manager/all_comments.html', {'comments': comments})
